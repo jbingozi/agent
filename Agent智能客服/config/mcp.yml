@@ -1,0 +1,54 @@
+# MCP 服务配置
+
+# 高德地图 API 配置
+amap:
+  api_key: "7bfa31c7bd20b799fff6e174ea44c503"  # 替换为你的高德地图 API Key
+  base_url: "https://restapi.amap.com/v3"
+
+  # 天气查询配置
+  weather:
+    endpoint: "/weather/weatherInfo"
+    extensions: "all"  # all: 返回实况+预报, base: 仅实况
+
+  # 地理编码配置
+  geocode:
+    endpoint: "/geocode/geo"
+
+  # 逆地理编码配置
+  regeo:
+    endpoint: "/geocode/regeo"
+
+  # POI 搜索配置
+  poi:
+    endpoint: "/place/text"
+    types: ""  # 可选：如 "餐饮服务|购物服务"
+
+# 搜索引擎配置
+search:
+  # 方案1: Tavily Search (推荐)
+  tavily:
+    api_key: "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"  # 替换为你的 Tavily API Key
+    search_depth: "basic"  # basic 或 advanced
+    max_results: 5
+    include_answer: true
+    include_raw_content: false
+
+  # 方案2: Serper.dev (备选)
+  serper:
+    api_key: "YOUR_SERPER_API_KEY"
+    num_results: 5
+
+# MCP 服务器配置
+server:
+  host: "127.0.0.1"
+  port: 8000
+  name: "agent-mcp-gateway"
+  description: "统一 MCP 聚合网关 - 高德地图 + 搜索引擎"
+
+# 工具注册配置
+tools:
+  enable_amap_weather: true
+  enable_amap_location: true
+  enable_amap_poi_search: true
+  enable_web_search: true
+  enable_news_search: true

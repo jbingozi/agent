@@ -1,0 +1,36 @@
+external_data_path: data/external/records.csv
+
+# MCP 配置路径
+mcp_config_path: config/mcp.yml
+
+# Agent 功能开关
+features:
+  enable_mcp_tools: true
+  enable_rag: true
+  enable_weather: true
+  enable_location: true
+
+# 记忆系统配置
+memory:
+  # Redis 配置（短期会话缓存）
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
+    password: ""
+    session_ttl: 3600  # 会话过期时间（秒），默认1小时
+  
+  # MySQL 配置（长期存储）
+  mysql:
+    host: "localhost"
+    port: 3306
+    user: "root"
+    password: "root"
+    database: "agent_memory"
+    charset: "utf8mb4"
+  
+  # 记忆策略
+  strategy:
+    max_short_term_messages: 50  # Redis中保留的最大消息数
+    save_to_long_term: true      # 是否保存到MySQL
+    enable_user_profile: true    # 是否启用用户画像

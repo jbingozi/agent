@@ -1,0 +1,36 @@
+2026-03-26 15:14:43,471 - agent - ERROR - vector_store.py:99 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\扫地机器人100问.pdf加载失败：`pypdf` package not found, please install it with `pip install pypdf`
+Traceback (most recent call last):
+  File "D:\develop\python\Lib\site-packages\langchain_community\document_loaders\parsers\pdf.py", line 359, in lazy_parse
+    import pypdf
+ModuleNotFoundError: No module named 'pypdf'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python-project\PythonProject\Agent智能客服\rag\vector_store.py", line 78, in load_document
+    documents: list[Document] = get_file_documents(path)
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\python-project\PythonProject\Agent智能客服\rag\vector_store.py", line 60, in get_file_documents
+    return pdf_loader(read_path)
+  File "D:\python-project\PythonProject\Agent智能客服\utilss\file_handler.py", line 55, in pdf_loader
+    return PyPDFLoader(filepath, passwd).load()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\develop\python\Lib\site-packages\langchain_core\document_loaders\base.py", line 43, in load
+    return list(self.lazy_load())
+  File "D:\develop\python\Lib\site-packages\langchain_community\document_loaders\pdf.py", line 305, in lazy_load
+    yield from self.parser.lazy_parse(blob)
+  File "D:\develop\python\Lib\site-packages\langchain_community\document_loaders\parsers\pdf.py", line 361, in lazy_parse
+    raise ImportError(
+        "`pypdf` package not found, please install it with `pip install pypdf`"
+    )
+ImportError: `pypdf` package not found, please install it with `pip install pypdf`
+2026-03-26 15:14:53,655 - agent - INFO - vector_store.py:96 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\扫地机器人100问2.txt 内容加载成功
+2026-03-26 15:15:06,636 - agent - INFO - vector_store.py:96 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\扫拖一体机器人100问.txt 内容加载成功
+2026-03-26 15:15:34,346 - agent - INFO - vector_store.py:96 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\故障排除.txt 内容加载成功
+2026-03-26 15:15:49,764 - agent - INFO - vector_store.py:96 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\维护保养.txt 内容加载成功
+2026-03-26 15:16:09,243 - agent - INFO - vector_store.py:96 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\扫地机器人100问.pdf 内容加载成功
+2026-03-26 15:16:09,243 - agent - INFO - vector_store.py:74 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\扫地机器人100问2.txt内容已经存在知识库内，跳过
+2026-03-26 15:16:09,244 - agent - INFO - vector_store.py:74 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\扫拖一体机器人100问.txt内容已经存在知识库内，跳过
+2026-03-26 15:16:09,245 - agent - INFO - vector_store.py:74 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\故障排除.txt内容已经存在知识库内，跳过
+2026-03-26 15:16:09,245 - agent - INFO - vector_store.py:74 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\维护保养.txt内容已经存在知识库内，跳过
+2026-03-26 15:16:18,972 - agent - INFO - vector_store.py:96 - [加载知识库]D:\python-project\PythonProject\Agent智能客服\data\选购指南.txt 内容加载成功
