@@ -1,0 +1,15 @@
+langchain-core
+langchain-community
+langgraph
+langchain-milvus
+langchain-text-splitters
+fastmcp
+pymilvus
+pymysql
+redis
+requests
+PyYAML
+tavily-python
+dashscope
+pypdf
+pytest

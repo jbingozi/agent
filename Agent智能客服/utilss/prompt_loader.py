@@ -11,7 +11,8 @@ def load_system_prompts():
         raise e
 
     try:
-        return open(system_prompt_path, "r", encoding="utf-8").read()
+        with open(system_prompt_path, "r", encoding="utf-8") as f:
+            return f.read()
     except Exception as e:
         logger.error(f"[load_system_prompts]解析系统提示词出错，{str(e)}")
         raise e
@@ -25,7 +26,8 @@ def load_rag_prompts():
         raise e
 
     try:
-        return open(rag_prompt_path, "r", encoding="utf-8").read()
+        with open(rag_prompt_path, "r", encoding="utf-8") as f:
+            return f.read()
     except Exception as e:
         logger.error(f"[load_rag_prompts]解析RAG总结提示词出错，{str(e)}")
         raise e
@@ -39,7 +41,8 @@ def load_report_prompts():
         raise e
 
     try:
-        return open(report_prompt_path, "r", encoding="utf-8").read()
+        with open(report_prompt_path, "r", encoding="utf-8") as f:
+            return f.read()
     except Exception as e:
         logger.error(f"[load_report_prompts]解析报告生成提示词出错，{str(e)}")
         raise e
