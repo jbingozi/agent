@@ -62,7 +62,7 @@ class AMapClient:
         Args:
             api_key: 高德地图 API Key，优先从配置读取
         """
-        self.api_key = api_key or mcp_conf.get("amap", {}).get("api_key", "")
+        self.api_key = api_key or os.getenv("AMAP_API_KEY") or mcp_conf.get("amap", {}).get("api_key", "")
         self.base_url = mcp_conf.get("amap", {}).get("base_url", "https://restapi.amap.com/v3")
 
         if not self.api_key:
@@ -247,9 +247,9 @@ class SearchClient:
         # 从配置加载
         if not self.api_key:
             if provider == "tavily":
-                self.api_key = mcp_conf.get("search", {}).get("tavily", {}).get("api_key", "")
+                self.api_key = os.getenv("TAVILY_API_KEY") or mcp_conf.get("search", {}).get("tavily", {}).get("api_key", "")
             elif provider == "serper":
-                self.api_key = mcp_conf.get("search", {}).get("serper", {}).get("api_key", "")
+                self.api_key = os.getenv("SERPER_API_KEY") or mcp_conf.get("search", {}).get("serper", {}).get("api_key", "")
 
     def search(self, query: str, num_results: int = 5,
                search_depth: str = "basic") -> List[Dict[str, Any]]:

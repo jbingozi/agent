@@ -2,7 +2,7 @@
 
 # 高德地图 API 配置
 amap:
-  api_key: "7bfa31c7bd20b799fff6e174ea44c503"  # 替换为你的高德地图 API Key
+  api_key: ""  # Read from AMAP_API_KEY in .env or OS environment
   base_url: "https://restapi.amap.com/v3"
 
   # 天气查询配置
@@ -27,7 +27,7 @@ amap:
 search:
   # 方案1: Tavily Search (推荐)
   tavily:
-    api_key: "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"  # 替换为你的 Tavily API Key
+    api_key: ""  # Read from TAVILY_API_KEY in .env or OS environment
     search_depth: "basic"  # basic 或 advanced
     max_results: 5
     include_answer: true
@@ -35,7 +35,7 @@ search:
 
   # 方案2: Serper.dev (备选)
   serper:
-    api_key: "YOUR_SERPER_API_KEY"
+    api_key: ""  # Read from SERPER_API_KEY in .env or OS environment
     num_results: 5
 
 # MCP 服务器配置

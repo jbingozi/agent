@@ -1,8 +1,8 @@
 # Milvus 云端配置（Zilliz Cloud 或自建集群）
 milvus:
   # 云端连接配置
-  uri: "https://in03-4410f8ebfee4d12.serverless.aws-eu-central-1.cloud.zilliz.com"  # 替换为你的 Public Endpoint
-  token: "3e18eeb7459c1b462b66ef4fb40cfa16e0ed693baaaee405bdb7dd8a4f1dcfb38dee30c7c6f2dea531bf4a130be2c3f99655c5f4"                                      # 替换为你的 API Key
+  uri: "./milvus_data/agent_knowledge.db"  # Override with MILVUS_URI in .env for Zilliz Cloud
+  token: ""                                # Override with MILVUS_TOKEN in .env
   
   # 集合配置（使用全新名称避免 Schema 冲突）
   collection_name: "kb_2026_fresh"

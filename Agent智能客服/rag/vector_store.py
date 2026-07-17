@@ -55,8 +55,8 @@ class VectorStoreService:
         milvus_config = milvus_conf.get("milvus", {})
         
         # 获取连接参数
-        db_uri = milvus_config.get("uri", "./milvus_data/agent_knowledge.db")
-        token = milvus_config.get("token", "")
+        db_uri = os.getenv("MILVUS_URI") or milvus_config.get("uri", "./milvus_data/agent_knowledge.db")
+        token = os.getenv("MILVUS_TOKEN") or milvus_config.get("token", "")
         collection_name = milvus_config.get("collection_name", "knowledge_base_2026")
         
         # 判断是否为本地文件模式
