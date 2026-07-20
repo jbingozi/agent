@@ -1,7 +1,5 @@
 import argparse
 import os
-import sys
-
 from utilss.config_handler import load_env_file
 from utilss.path_tool import get_abs_path
 
@@ -23,6 +21,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--session-id", dest="session_id", default=None, help="会话 ID")
     parser.add_argument("--user-id", dest="user_id", default=None, help="用户 ID")
     parser.add_argument("--check-env", action="store_true", help="Print the .env path and masked env values")
+    parser.add_argument("--serve", action="store_true", help="Start the FastAPI web server")
+    parser.add_argument("--host", default="127.0.0.1", help="Web server host")
+    parser.add_argument("--port", type=int, default=8000, help="Web server port")
     return parser
 
 
@@ -66,6 +67,12 @@ def main() -> int:
         check_env()
         return 0
 
+    if args.serve:
+        import uvicorn
+
+        uvicorn.run("app:app", host=args.host, port=args.port, reload=False)
+        return 0
+
     from agent.react_agent import ReactAgent
 
     agent = ReactAgent()
@@ -74,12 +81,8 @@ def main() -> int:
         run_once(agent, args.query, args.session_id, args.user_id)
         return 0
 
-    if sys.stdin.isatty():
-        interactive_loop(agent)
-        return 0
-
-    parser.print_help()
-    return 1
+    interactive_loop(agent)
+    return 0
 
 
 if __name__ == "__main__":

@@ -4,6 +4,8 @@ langgraph
 langchain-milvus
 langchain-text-splitters
 fastmcp
+fastapi
+uvicorn
 pymilvus
 pymysql
 redis

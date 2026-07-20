@@ -321,6 +321,35 @@ class ReactAgent:
         # --------------------------------------------------------------------
         step_counter = 0
         full_response = ""
+
+        def _iter_text_chunks(text: str):
+            stripped = text.strip()
+            if not stripped:
+                return
+
+            for raw_line in stripped.splitlines():
+                line = raw_line.strip()
+                if not line:
+                    yield "\n"
+                    continue
+
+                start = 0
+                while start < len(line):
+                    end = min(len(line), start + 40)
+                    window = line[start:end]
+                    break_at = -1
+                    for mark in "。！？!?，,；;：:":
+                        pos = window.rfind(mark)
+                        if pos > break_at:
+                            break_at = pos
+
+                    if break_at >= 15:
+                        end = start + break_at + 1
+
+                    yield line[start:end]
+                    start = end
+
+                yield "\n"
         
         for event in self.graph.stream(input_state, stream_mode="values"):
             step_counter += 1
@@ -365,15 +394,15 @@ class ReactAgent:
                         content = latest_message.content
                         
                         if isinstance(content, str):
-                            chunk = content.strip() + "\n"
-                            full_response += chunk
-                            yield chunk
+                            for chunk in _iter_text_chunks(content):
+                                full_response += chunk
+                                yield chunk
                         elif isinstance(content, list):
                             for item in content:
                                 if isinstance(item, dict) and item.get('type') == 'text':
-                                    chunk = item['text'].strip() + "\n"
-                                    full_response += chunk
-                                    yield chunk
+                                    for chunk in _iter_text_chunks(item['text']):
+                                        full_response += chunk
+                                        yield chunk
                 
                 elif isinstance(latest_message, ToolMessage):
                     logger.info(f"[execute_stream]跳过工具结果: {latest_message.name}")
