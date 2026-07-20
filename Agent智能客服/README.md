@@ -39,6 +39,12 @@ MILVUS_TOKEN=
 
 ## 启动
 
+检查当前进程实际读取到的 `.env` 和关键环境变量：
+
+```bash
+python main.py --check-env
+```
+
 单轮模式：
 
 ```bash
@@ -60,5 +66,6 @@ python -m unittest discover -s tests
 ## 说明
 
 - 项目会优先读取环境变量，其次读取 `.env`
+- `.env` 固定从项目根目录读取，PyCharm 和命令行应使用同一个文件
 - 日志、本地向量库、缓存文件已加入 `.gitignore`
 - 如果要接 Zilliz Cloud，把 `MILVUS_URI` 和 `MILVUS_TOKEN` 写进 `.env`
